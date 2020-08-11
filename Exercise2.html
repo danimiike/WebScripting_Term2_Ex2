@@ -1,0 +1,91 @@
+<html>
+	<head>
+		<title>Danielle_Exercise2</title>
+	
+			<style type="text/css">
+				body {
+					background-color:rgb(255, 230, 230);
+				}
+				/*button properties*/
+				.BtnButton {
+					font-family: Verdana, Arial, Helvetica;
+					font-size: 8pt;
+					color: black;
+					height: 24px;
+					cursor: pointer;
+				}
+				/*output properties*/
+				.DivOutput {
+					font-family: Verdana, Arial, Helvetica;
+					font-size: 10pt;
+					color: black;
+					background-color:aliceblue;
+				}
+			</style>
+			<script language="JavaScript" type="text/JavaScript">
+				
+				//create a constructor function to create three objects
+				function getElements( prodId, supplierCode, description, pictureName,qtyOnHand,price, dateCreated ) {
+						//function to get today date
+						var date = function(){
+								var monName = ["Jan","Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"]
+								var now = new Date();
+								return (monName[now.getMonth()] + " " + now.getDate() + ", " + now.getFullYear());
+								}
+					this.prodId = prodId;
+					this.supplierCode = supplierCode;
+					this.description = description; 
+					this.pictureName = pictureName;
+					this.qtyOnHand = qtyOnHand;
+					this.price = price;
+					this.dateCreated =date();
+				}
+				//create and instantiate the three elements
+				var koala = new getElements( 1002, "s1001", "Koalas",  "Koala.jpg", 9, 119.95);
+				var tulip = new getElements(1003, "s1002", "Tulips", "Tulips.jpg", 9, 7.95);
+				var penguin = new getElements(1004, "s1003", "Penguins", "Penguins.jpg", 9, 127.95);
+
+				//function to display all the properties for the specified object in the "outputStuff"
+
+				function showProperties(button) {
+					var text = button.value;
+					//if the user click on the Koalas button
+					if (text === "Koalas") {
+						
+						text+="<br>" + koala.prodId + "<br>" + koala.supplierCode + "<br>" + koala.description + "<br>" + koala.pictureName + "<br>" 
+									+ koala.qtyOnHand +"<br>" + koala.price + "<br>" + koala.dateCreated +"<br>";
+						document.getElementById("pics").src = "pictures/" + koala.pictureName;
+					}
+					//if the user click on the Tulips button
+					else if (text === "Tulips") {
+						
+						text+= "<br>" + tulip.prodId + "<br>" + tulip.supplierCode + "<br>" + tulip.description + "<br>" + tulip.pictureName + "<br>" 
+									+ tulip.qtyOnHand +"<br>" + tulip.price + "<br>" + tulip.dateCreated +"<br>";
+						document.getElementById("pics").src = "pictures/" + tulip.pictureName;
+					}
+					//if the user click on the Penguin button
+					else {
+						
+						text+= "<br>" + penguin.prodId + "<br>" + penguin.supplierCode + "<br>" + penguin.description + "<br>" + penguin.pictureName + "<br>" 
+									+ penguin.qtyOnHand +"<br>" + penguin.price + "<br>" + penguin.dateCreated +"<br>";
+						document.getElementById("pics").src = "pictures/" + penguin.pictureName;
+					}
+					
+					document.getElementById("outputStuff").innerHTML = text;
+				}
+			</script>
+	</head>
+	<body>
+		
+		<!-- create 3 buttons and a single event handler that manages input from all of the buttons -->
+		<input type="button" id="btnKoala" class="BtnButton" onclick="showProperties(this);" value="Koalas"/>  
+		<br /><br />
+		<input type="button" id="btnTulip" class="BtnButton" onclick="showProperties(this);" value="Tulips"/>
+		<br /><br />
+		<input type="button" id="btnPenguin" class="BtnButton" onclick="showProperties(this);" value="Penguins"/>
+		<br /><br />
+		<div id="outputStuff" class="DivOutput"></div>
+		<br />
+		<img id="pics" src="">
+	</body>
+</html>
